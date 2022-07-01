@@ -8,7 +8,6 @@ namespace bootcamp_assignment_1.Controllers
         public double Capital { get; set; }
         public int Date { get; set; }
         public double InterestRate { get; set; }
-        public double Result { get; set; }
     }
     [Route("protein/api/[controller]")]
     [ApiController]
@@ -25,13 +24,14 @@ namespace bootcamp_assignment_1.Controllers
         }
 
         [HttpPost]
-        public double Post(double capital, int date)
+        public string Post(double capital, int date)
         {
             double interestRate = 0.15;
 
-            double result = capital * (1 + interestRate) / date;
+            double result = (capital * (1 + interestRate)) - capital;
+            double resultMonth = capital * (1 + interestRate) / date;
 
-            return result;
+            return "Toplam faiz: " + result + "\nAylık taksit: " + resultMonth;
         }
     }
 }
